@@ -8,11 +8,15 @@ public class GarderShopApp {
         GardenShop gardenShop = new GardenShop();
         String name;
         double price;
+        String workwearSize = "";
+
+
         do {
             System.out.println("-------- Garder Shop ----------");
             System.out.println("1 - add flower");
             System.out.println("2 - add fertilizer");
-            System.out.println("3 - display all");
+            System.out.println("3 - add workwear");
+            System.out.println("4 - display all");
             System.out.println("0 - stop");
             option = scanner.nextInt();
             scanner.nextLine(); // \n
@@ -48,11 +52,43 @@ public class GarderShopApp {
 
                     break;
                 case 3:
+                    System.out.print("Nazwa: ");
+                    name = scanner.nextLine();
+
+                    System.out.print("Cena: ");
+                    price = scanner.nextDouble();
+
+                    scanner.nextLine();
+                    System.out.println("Rozmiar do wyboru: ");
+                    System.out.println("1 - S");
+                    System.out.println("2 - M");
+                    System.out.println("3 - L");
+                    System.out.println("4 - XL");
+                    int chooseSize = scanner.nextInt();
+
+                    switch (chooseSize) {
+                        case 1:
+                            workwearSize = "S";
+                            break;
+                        case 2:
+                            workwearSize = "M";
+                            break;
+                        case 3:
+                            workwearSize = "L";
+                            break;
+                        case 4:
+                            workwearSize = "XL";
+                            break;
+                    }
+
+                    Workwear workwear = new Workwear(name, price, workwearSize);
+                    gardenShop.addWorkwear(workwear);
+                case 4:
                     gardenShop.displayAll();
                     break;
             }
 
-        }while(option != 0);
+        } while (option != 0);
 
 
         scanner.close();
